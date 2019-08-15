@@ -1,0 +1,27 @@
+<mat-sidenav-container class="nav-container">
+  <mat-sidenav class="sideNav" #sidenav mode="side" [opened]="sibCom.sideNavIsOpen" (click)="sibCom.toggle()">
+    <p routerLink="/home" class="mouse-pointer">Home</p>
+    <p routerLink="/about" class="mouse-pointer">About</p>
+    <p routerLink="/categories" class="mouse-pointer">Products</p>
+    <p routerLink="/contact" class="mouse-pointer">Contact</p>
+    <app-social-links>
+      <a #Sociallink href="https://www.facebook.com">
+        <fa-icon class="facebook" [icon]="facebook"></fa-icon>
+      </a>
+      <a #Sociallink href="https://github.com/">
+        <fa-icon [icon]="github"></fa-icon>
+      </a>
+      <a #Sociallink href="mailto:asafbenhorin@email.com">
+        <fa-icon [icon]="email"></fa-icon>
+      </a>
+    </app-social-links>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-header></app-header>
+    <div class="padding-main" [@routeAnimations]="o && o.activatedRouteData 
+      && o.activatedRouteData['animation']">
+      <router-outlet #o="outlet"></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
