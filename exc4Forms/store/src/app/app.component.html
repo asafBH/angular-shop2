@@ -1,0 +1,31 @@
+<mat-sidenav-container class="nav-container">
+  <mat-sidenav class="sideNav" #sidenav mode="side" [opened]="sibCom.sideNavIsOpen" (click)="sibCom.toggle()">
+    <p routerLink="/home" class="mouse-pointer">Home</p>
+    <p routerLink="/about" class="mouse-pointer">About</p>
+    <p routerLink="/categories" class="mouse-pointer">Products</p>
+    <p routerLink="/contact" class="mouse-pointer">Contact</p>
+    <p routerLink="/cart" [hidden]="!userLog.isAuthenticated" class="mouse-pointer">Shopping Cart ({{(cart.$cartSubject | async)?.length}})</p>
+    <p [hidden]="!(userLog.userLoggedIn && userLog.userLoggedIn === 'admin')" ><a class="mouse-pointer" routerLink="/addProduct">Add Product</a></p> 
+    <p routerLink="/login" [hidden]="userLog.isAuthenticated"  class="mouse-pointer">Log In</p>
+    <p [hidden]="!userLog.isAuthenticated" (click)="userLog.logOut()" class="mouse-pointer">Log Out</p>
+    <app-social-links>
+      <a #Sociallink href="https://www.facebook.com">
+        <fa-icon class="facebook" [icon]="facebook"></fa-icon>
+      </a>
+      <a #Sociallink href="https://github.com/">
+        <fa-icon [icon]="github"></fa-icon>
+      </a>
+      <a #Sociallink href="mailto:asafbenhorin@email.com">
+        <fa-icon [icon]="email"></fa-icon>
+      </a>
+    </app-social-links>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-header></app-header>
+    <div class="padding-main" [@routeAnimations]="o && o.activatedRouteData 
+      && o.activatedRouteData['animation']">
+      <router-outlet #o="outlet"></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,15 @@
+<header>
+  <nav>
+    <div fxFlex fxLayout="row" fxLayoutAlign="center center">
+      <div fxFlex>
+        <a class="mouse-pointer" (click)="sibCom.toggle()">
+          <mat-icon>menu</mat-icon>
+        </a>
+      </div>
+      <mat-icon *ngIf="userLog.isAuthenticated" class="mouse-pointer" matBadgePosition="before" matBadge="{{(cart.$cartSubject | async)?.length}}"
+        matBadgeColor="warn" routerLink="/cart">shopping_cart</mat-icon>
+          <mat-icon class="mouse-pointer" routerLink="/login">account_circle</mat-icon>
+          
+    </div>
+  </nav>
+</header>
